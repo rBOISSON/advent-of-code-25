@@ -4,7 +4,7 @@
   "description": "My advent of code 2025 challenges implementation",
   "main": "index.ts",
   "scripts": {
-    "start": "tsc && node dist/index.js",
+    "start": "tsc && copyfiles './src/**/*.{json,txt,md}' dist && node dist/index.js",
     "lint": "eslint . --ext .ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/rBOISSON/advent-of-code-25#readme",
   "devDependencies": {
+    "@types/node": "^24.10.1",
+    "copyfiles": "^2.4.1",
     "eslint": "^9.39.1",
     "globals": "^16.5.0",
     "jiti": "^2.6.1",
