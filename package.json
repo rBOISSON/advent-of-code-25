@@ -1,0 +1,29 @@
+{
+  "name": "advent-of-code-25",
+  "version": "1.0.0",
+  "description": "My advent of code 2025 challenges implementation",
+  "main": "index.ts",
+  "scripts": {
+    "start": "tsc && node dist/index.js",
+    "lint": "eslint . --ext .ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rBOISSON/advent-of-code-25.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rBOISSON/advent-of-code-25/issues"
+  },
+  "homepage": "https://github.com/rBOISSON/advent-of-code-25#readme",
+  "devDependencies": {
+    "eslint": "^9.39.1",
+    "globals": "^16.5.0",
+    "jiti": "^2.6.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.0"
+  }
+}
