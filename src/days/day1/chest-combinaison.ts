@@ -4,13 +4,14 @@ import { getFileContent } from '../../helpers';
 const MODULO = 100;
 
 export const findChestCombinaison = () => {
+    console.time("simple tick");
+    //const inputData = getFileContent(`${path.dirname(__filename)}/exercise.txt`).filter(data => data.length > 0);
     const inputData = getFileContent(`${path.dirname(__filename)}/input-day-1.txt`).filter(data => data.length > 0);
 
     let count = 0;
     let currentChestValue = 50;
 
     for(const input of inputData) {
-        console.log("input", input);
         currentChestValue = applyCode(currentChestValue, input);
         if (currentChestValue === 0) {
             count++;
@@ -18,16 +19,68 @@ export const findChestCombinaison = () => {
     }
 
     console.log("result", count);
+    console.timeEnd("simple tick");
+
+    console.time("all tick");
+    
+    count = 0;
+    currentChestValue = 50;
+
+    for(const input of inputData) {
+        let newChestValue = computeChestValue(currentChestValue, input);
+
+        if (currentChestValue === 0 && newChestValue < 0) {
+            count--;
+        } 
+
+        if (newChestValue === 0) {
+            count++;
+        }
+
+        while (newChestValue >= MODULO) {
+            count++;
+            newChestValue -= MODULO;
+        }
+
+        while (newChestValue < 0) {
+            count++;
+            newChestValue += MODULO;
+
+            if(newChestValue === 0) {
+                count++;
+            }
+        }
+
+        currentChestValue = newChestValue;
+    }
+
+    console.log("result", count);
+    console.timeEnd("all tick");
 }
 
-const applyCode = (currentChestValue: number, valueToApply: string) : number => {
+const computeChestValue = (currentChestValue: number, valueToApply: string) : number => {
     const { rotation, rotationValue } = readRotationInstruction(valueToApply);
+
     let res = currentChestValue; 
     if (rotation == 'L') {
         res -= rotationValue;
     } else {
         res += rotationValue;
     }
+
+    return res;
+}
+
+const applyCode = (currentChestValue: number, valueToApply: string) : number => {
+    const { rotation, rotationValue } = readRotationInstruction(valueToApply);
+
+    let res = currentChestValue; 
+    if (rotation == 'L') {
+        res -= rotationValue;
+    } else {
+        res += rotationValue;
+    }
+
     return modulo(res);
 }
 
@@ -46,6 +99,6 @@ const readRotationInstruction = (rotationInstruction: string): {rotation: 'L' | 
     }
 }
 
-const modulo = (n) => {
+const modulo = (n: number): number => {
     return ((n % MODULO) + MODULO) % MODULO;
 };
