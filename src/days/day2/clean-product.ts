@@ -32,6 +32,7 @@ export const cleanProduct = () => {
 
     for (const testNumber of numberInRange) {
       if (isInvalidV2(testNumber)) {
+        console.log("add", parseInt(testNumber));
         resComplex += parseInt(testNumber);
       }
     }
@@ -44,18 +45,34 @@ const isInvalidV2 = (data: string): boolean => {
   const dividers = findLengthDivider(data.length);
 
   for (const divider of dividers) {
-    const paternLength = divider;
-    const nbPatern = data.length / divider;
-    for (let i = 0; i < paternLength; i++) {
-      const letter = data[i];
-      for (let j = 0; j < nbPatern; j++) {
-        if (letter != data[i + j * nbPatern]) {
-          return false;
-        }
+    const paternLength = data.length / divider;
+    const nbPatern = divider;
+    if (isPaternRepeated(data, paternLength, nbPatern)) {
+      console.log("find", data);
+      return true;
+    }
+  }
+
+  return false;
+};
+
+const isPaternRepeated = (
+  data: string,
+  paternLength: number,
+  nbPatern: number
+): boolean => {
+  for (let i = 0; i < paternLength; i++) {
+    const letter = data[i];
+    for (let j = 1; j < nbPatern; j++) {
+      if (letter != data[i + j * paternLength]) {
+        return false;
       }
     }
   }
 
+  console.log("patern find", data);
+  console.log("paternLength", paternLength);
+  console.log("nbPatern", nbPatern);
   return true;
 };
 
@@ -66,7 +83,7 @@ const findLengthDivider = (n: number): number[] => {
     return dividerMap.get(n);
   }
 
-  for (let i = 1; i <= n; i++) {
+  for (let i = 2; i <= n; i++) {
     if (n % i == 0) {
       dividers.push(i);
     }
