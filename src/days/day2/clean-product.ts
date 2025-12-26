@@ -61,7 +61,6 @@ const isInvalidV2 = (data: string): boolean => {
 
 const findLengthDivider = (n: number): number[] => {
   const dividers: number[] = [];
-  console.log("looking for n", n);
 
   if (dividerMap.has(n)) {
     return dividerMap.get(n);
@@ -74,7 +73,7 @@ const findLengthDivider = (n: number): number[] => {
   }
 
   dividerMap.set(n, dividers);
-  console.log("find", dividers);
+  console.log("dividerMap", dividerMap);
   return dividers;
 };
 
