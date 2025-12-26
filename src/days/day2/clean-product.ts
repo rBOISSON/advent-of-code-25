@@ -2,6 +2,8 @@ import path from "path";
 
 import { getFileContent } from "../../helpers";
 
+const dividerMap = new Map<number, number[]>();
+
 export const cleanProduct = () => {
   const products = getFileContent(
     `${path.dirname(__filename)}/input-day-2.txt`,
@@ -58,17 +60,22 @@ const isInvalidV2 = (data: string): boolean => {
 };
 
 const findLengthDivider = (n: number): number[] => {
-  const divider: number[] = [];
+  const dividers: number[] = [];
   console.log("looking for n", n);
+
+  if (dividerMap.has(n)) {
+    return dividerMap.get(n);
+  }
 
   for (let i = 1; i <= n; i++) {
     if (n % i == 0) {
-      divider.push(i);
+      dividers.push(i);
     }
   }
 
-  console.log("find", divider);
-  return divider;
+  dividerMap.set(n, dividers);
+  console.log("find", dividers);
+  return dividers;
 };
 
 const isInvalidV1 = (data: string): boolean => {
