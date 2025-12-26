@@ -1,5 +1,4 @@
 import path from "path";
-
 import { getFileContent } from "../../helpers";
 
 const dividerMap = new Map<number, number[]>();
