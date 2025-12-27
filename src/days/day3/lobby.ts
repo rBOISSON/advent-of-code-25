@@ -4,7 +4,7 @@ import { getFileContent } from "../../helpers";
 
 export const getPowerBanksValue = () => {
   const powerbanks = getFileContent(
-    `${path.dirname(__filename)}/input-day-3.txt`,
+    `${path.dirname(__filename)}/input.txt`,
     "\n"
   );
 

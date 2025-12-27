@@ -4,10 +4,7 @@ import { getFileContent } from "../../helpers";
 const dividerMap = new Map<number, number[]>();
 
 export const cleanProduct = () => {
-  const products = getFileContent(
-    `${path.dirname(__filename)}/input-day-2.txt`,
-    ","
-  );
+  const products = getFileContent(`${path.dirname(__filename)}/input.txt`, ",");
 
   let res = 0;
   for (const index in products) {

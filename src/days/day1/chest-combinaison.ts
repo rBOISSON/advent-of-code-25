@@ -6,7 +6,7 @@ const MODULO = 100;
 export const findChestCombinaison = () => {
   console.time("simple tick");
   const inputData = getFileContent(
-    `${path.dirname(__filename)}/input-day-1.txt`,
+    `${path.dirname(__filename)}/input.txt`,
     /\r?\n/
   ).filter((data) => data.length > 0);
 
